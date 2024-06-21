@@ -124,6 +124,7 @@ object frmVenda: TfrmVenda
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnKeyPress = edtNumeroVendaKeyPress
     end
   end
   object qryVenda: TZQuery

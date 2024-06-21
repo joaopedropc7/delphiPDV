@@ -12,6 +12,7 @@ object frmVendaPDV: TfrmVendaPDV
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnActivate = FormActivate
   OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
@@ -323,7 +324,6 @@ object frmVendaPDV: TfrmVendaPDV
   end
   object qryProdutosVenda: TZQuery
     Connection = frmPrincipal.conexaoBD
-    Active = True
     SQL.Strings = (
       
         'SELECT VP.ID, P.NOME,  VP.QUANTIDADE, VP.VALOR_PROD '#10'FROM VENDAS' +
@@ -335,7 +335,6 @@ object frmVendaPDV: TfrmVendaPDV
   end
   object qryBuscarProdutos: TZQuery
     Connection = frmPrincipal.conexaoBD
-    Active = True
     SQL.Strings = (
       'SELECT * FROM PRODUTOS WHERE ID = 1')
     Params = <>
@@ -344,7 +343,6 @@ object frmVendaPDV: TfrmVendaPDV
   end
   object qryInserirProdutoLan: TZQuery
     Connection = frmPrincipal.conexaoBD
-    Active = True
     SQL.Strings = (
       'SELECT * FROM PRODUTOS WHERE ID = 1')
     Params = <>

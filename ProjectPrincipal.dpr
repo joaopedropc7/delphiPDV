@@ -11,7 +11,8 @@ uses
   UnitVendas in 'UnitVendas.pas' {frmVenda},
   UnitVendaPDV in 'UnitVendaPDV.pas' {frmVendaPDV},
   UnitConsultaProdGeral in 'UnitConsultaProdGeral.pas' {frmConsultaProd},
-  UnitPagamentos in 'UnitPagamentos.pas' {frmPagamento};
+  UnitPagamentos in 'UnitPagamentos.pas' {frmPagamento},
+  UnitTelaDesconto in 'UnitTelaDesconto.pas' {frmDesconto};
 
 {$R *.res}
 

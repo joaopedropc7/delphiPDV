@@ -10,7 +10,8 @@ uses
   UnitAjusteEstoque in 'UnitAjusteEstoque.pas' {frmAjusteEstoque},
   UnitVendas in 'UnitVendas.pas' {frmVenda},
   UnitVendaPDV in 'UnitVendaPDV.pas' {frmVendaPDV},
-  UnitConsultaProdGeral in 'UnitConsultaProdGeral.pas' {frmConsultaProd};
+  UnitConsultaProdGeral in 'UnitConsultaProdGeral.pas' {frmConsultaProd},
+  UnitPagamentos in 'UnitPagamentos.pas' {frmPagamento};
 
 {$R *.res}
 

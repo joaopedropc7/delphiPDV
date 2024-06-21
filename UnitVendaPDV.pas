@@ -48,12 +48,14 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnFinalizarVendaClick(Sender: TObject);
     procedure btnCancelarVendaClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     valorTotalVenda: Double;
     vendaCancelada: Boolean;
+    procedure calculValorTotalVenda;
   end;
 
 var
@@ -61,7 +63,8 @@ var
 
 implementation
 
-uses UnitVendas, UnitPrincipal, UnitConsultaProdGeral, UnitPagamentos;
+uses UnitVendas, UnitPrincipal, UnitConsultaProdGeral, UnitPagamentos,
+  UnitTelaDesconto;
 
 {$R *.dfm}
 
@@ -76,6 +79,7 @@ begin
   qryProdutosVenda.Active;
   qryProdutosVenda.Open;
   qryProdutosVenda.Refresh;
+  calculValorTotalVenda;
 end;
 
 procedure TfrmVendaPDV.edtCdProExit(Sender: TObject);
@@ -210,6 +214,10 @@ begin
 
   valorTotalVenda := valorTotalVenda + (quantidade * valorProd);
   Panel2.Caption := 'R$ ' + FormatFloat('0.00', valorTotalVenda);
+  edtNomePro.Text := '';
+  edtCdPro.Text := '';
+  edtQuantidadePro.Text := '';
+  edtValorPro.Text := '';
 
 
 
@@ -225,6 +233,7 @@ begin
     Exit;
   end;
   Action := caFree;
+  frmVenda.alteraIdVendaParaUltima;
 end;
 
 procedure TfrmVendaPDV.btnFinalizarVendaClick(Sender: TObject);
@@ -234,11 +243,11 @@ begin
     MessageDlg('É necessário inserir produtos para finalizar a venda!', mtWarning, [mbOK], 0);
     exit;
   end;
-	Application.CreateForm(TfrmPagamento, frmPagamento);
+	Application.CreateForm(TfrmDesconto, frmDesconto);
   try
-		frmPagamento.ShowModal;
+		frmDesconto.ShowModal;
   finally
-    frmPagamento.Free;
+    frmDesconto.Free;
   end;
 end;
 
@@ -262,6 +271,25 @@ begin
 
   Close;
 
+end;
+
+procedure TfrmVendaPDV.calculValorTotalVenda();
+var produtoValorVenda: Double;
+begin
+  valorTotalVenda := 0;
+  qryProdutosVenda.First;
+  while not qryProdutosVenda.Eof do
+  begin
+    produtoValorVenda := qryProdutosVenda.FieldByName('VALOR_PROD').AsFloat;
+    valorTotalVenda := valorTotalVenda + produtoValorVenda;
+    qryProdutosVenda.Next;
+  end;
+  Panel2.Caption := 'R$ ' + FormatFloat('0.00', valorTotalVenda);
+
+end;
+procedure TfrmVendaPDV.FormActivate(Sender: TObject);
+begin
+  calculValorTotalVenda;
 end;
 
 end.
