@@ -135,36 +135,6 @@ object frmDesconto: TfrmDesconto
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object edtDescontoPr: TEdit
-        Left = 64
-        Top = 56
-        Width = 105
-        Height = 33
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -20
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 0
-        OnExit = edtDescontoPrExit
-        OnKeyPress = edtDescontoPrKeyPress
-      end
-      object edtDescontoVl: TEdit
-        Left = 208
-        Top = 56
-        Width = 105
-        Height = 33
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -20
-        Font.Name = 'MS Sans Serif'
-        Font.Style = [fsBold]
-        ParentFont = False
-        TabOrder = 1
-        OnExit = edtDescontoVlExit
-        OnKeyPress = edtDescontoVlKeyPress
-      end
       object pnlBotaoConfirmar: TPanel
         Left = 96
         Top = 240
@@ -174,7 +144,7 @@ object frmDesconto: TfrmDesconto
         BevelOuter = bvSpace
         BorderStyle = bsSingle
         Color = clGreen
-        TabOrder = 2
+        TabOrder = 0
         object SpeedButton1: TSpeedButton
           Left = 0
           Top = 0
@@ -191,28 +161,65 @@ object frmDesconto: TfrmDesconto
           OnClick = SpeedButton1Click
         end
       end
-      object edtValorFinal: TEdit
-        Left = 208
-        Top = 152
-        Width = 105
-        Height = 33
+      object dbEdtDescPR: TDBEdit
+        Left = 64
+        Top = 64
+        Width = 89
+        Height = 28
+        DataField = 'DESCPR'
+        DataSource = DataSource1
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -20
+        Font.Color = clWindowText
+        Font.Height = -16
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
-        ReadOnly = True
+        TabOrder = 1
+        OnExit = edtDescontoPrExit
+        OnKeyPress = edtDescontoPrKeyPress
+      end
+      object dbEdtDescVL: TDBEdit
+        Left = 208
+        Top = 64
+        Width = 89
+        Height = 28
+        DataField = 'DESCVL'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+        OnExit = edtDescontoVlExit
+        OnKeyPress = edtDescontoVlKeyPress
+      end
+      object dbEdtValorCheio: TDBEdit
+        Left = 64
+        Top = 160
+        Width = 89
+        Height = 28
+        DataField = 'VALOR'
+        DataSource = DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 3
       end
-      object edtValorCheio: TEdit
-        Left = 64
-        Top = 152
-        Width = 105
-        Height = 33
+      object dbEdtValorFinal: TDBEdit
+        Left = 208
+        Top = 160
+        Width = 89
+        Height = 28
+        DataField = 'VLFINAL'
+        DataSource = DataSource1
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clRed
-        Font.Height = -20
+        Font.Color = clWindowText
+        Font.Height = -16
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
@@ -220,5 +227,19 @@ object frmDesconto: TfrmDesconto
         TabOrder = 4
       end
     end
+  end
+  object zqryDesconto: TZQuery
+    Connection = frmPrincipal.conexaoBD
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM VENDAS WHERE ID = 1;')
+    Params = <>
+    Left = 40
+    Top = 2
+  end
+  object DataSource1: TDataSource
+    DataSet = zqryDesconto
+    Left = 328
+    Top = 10
   end
 end

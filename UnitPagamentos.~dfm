@@ -221,7 +221,6 @@ object frmPagamento: TfrmPagamento
   end
   object qryFormasPG: TZQuery
     Connection = frmPrincipal.conexaoBD
-    Active = True
     SQL.Strings = (
       'SELECT * FROM FORMAS_PAGAMENTO WHERE ID = 1')
     Params = <>

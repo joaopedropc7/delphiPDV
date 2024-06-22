@@ -116,12 +116,12 @@ object frmVenda: TfrmVenda
       Left = 104
       Top = 88
       Width = 137
-      Height = 28
+      Height = 37
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -16
+      Font.Height = -23
       Font.Name = 'MS Sans Serif'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 2
       OnKeyPress = edtNumeroVendaKeyPress

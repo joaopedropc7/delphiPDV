@@ -237,14 +237,24 @@ begin
 end;
 
 procedure TfrmVendaPDV.btnFinalizarVendaClick(Sender: TObject);
+var querySqlUpdate: String;
 begin
 	if valorTotalVenda <= 0 then
   begin
     MessageDlg('É necessário inserir produtos para finalizar a venda!', mtWarning, [mbOK], 0);
     exit;
   end;
+  querySqlUpdate := 'UPDATE VENDAS SET VALOR = :VALOR, VLFINAL = :VLFINAL WHERE ID = :ID';
+  qryBuscarProdutos.SQL.Text :=  querySqlUpdate;
+  qryBuscarProdutos.ParamByName('VALOR').AsFloat := valorTotalVenda;
+  qryBuscarProdutos.ParamByName('VLFINAL').AsFloat := valorTotalVenda;
+  qryBuscarProdutos.ParamByName('ID').AsInteger := frmVenda.vendaAtual;
+  qryBuscarProdutos.ExecSQL;
+  //qryBuscarProdutos.SQL.Text := 'SELECT ID, NOME, VALORVENDA, VALORPROMOCAO, PROMOCAO FROM PRODUTOS WHERE ID = :ID';
+  //qryBuscarProdutos.ParamByName('ID').AsInteger := StrToInt(edtCdPro.Text);
+  //qryBuscarProdutos.Open;
 	Application.CreateForm(TfrmDesconto, frmDesconto);
-  try
+  try                                                     
 		frmDesconto.ShowModal;
   finally
     frmDesconto.Free;

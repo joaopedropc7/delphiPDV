@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, Buttons;
+  Dialogs, ExtCtrls, StdCtrls, Buttons, DB, Mask, DBCtrls,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset;
 
 type
   TfrmDesconto = class(TForm)
@@ -15,22 +16,25 @@ type
     pnlAllClient: TPanel;
     pnlTitulo: TPanel;
     pnlAllClientDesconto: TPanel;
-    edtDescontoPr: TEdit;
-    edtDescontoVl: TEdit;
     lblDescontoPr: TLabel;
     Label1: TLabel;
     pnlBotaoConfirmar: TPanel;
     SpeedButton1: TSpeedButton;
-    edtValorFinal: TEdit;
-    edtValorCheio: TEdit;
     Label2: TLabel;
     Label3: TLabel;
+    zqryDesconto: TZQuery;
+    dbEdtDescPR: TDBEdit;
+    dbEdtDescVL: TDBEdit;
+    DataSource1: TDataSource;
+    dbEdtValorCheio: TDBEdit;
+    dbEdtValorFinal: TDBEdit;
     procedure edtDescontoPrKeyPress(Sender: TObject; var Key: Char);
     procedure FormCreate(Sender: TObject);
     procedure edtDescontoVlKeyPress(Sender: TObject; var Key: Char);
     procedure SpeedButton1Click(Sender: TObject);
     procedure edtDescontoPrExit(Sender: TObject);
     procedure edtDescontoVlExit(Sender: TObject);
+    procedure verificaDesconto;
    
   private
     { Private declarations }
@@ -44,7 +48,7 @@ var
 
 implementation
 
-uses UnitVendaPDV, Math, UnitPagamentos;
+uses UnitVendaPDV, Math, UnitPagamentos, UnitPrincipal, UnitVendas;
 
 {$R *.dfm}
 
@@ -60,11 +64,11 @@ begin
   begin
     Key := #0;
 
-    if edtDescontoPr.Text = '' then
+    if dbEdtDescPR.Text = '' then
       Exit;
 
     try
-      descontoPr := StrToFloat(StringReplace(edtDescontoPr.Text, ',', ',', [rfReplaceAll]));
+      descontoPr := StrToFloat(StringReplace(dbEdtDescPR.Text, ',', ',', [rfReplaceAll]));
     except
       on E: EConvertError do
       begin
@@ -74,9 +78,9 @@ begin
     end;
 
     valorDesconto := (descontoPr * valorCheio) / 100;
-    edtDescontoVl.Text := FormatFloat('0.00', valorDesconto);
+    dbEdtDescVL.Text := FormatFloat('0.00', valorDesconto);
     valorFinal := valorCheio - valorDesconto;
-    edtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
+    dbEdtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
 
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
@@ -84,9 +88,12 @@ end;
 
 procedure TfrmDesconto.FormCreate(Sender: TObject);
 begin
-	valorCheio := frmVendaPDV.valorTotalVenda;
-  edtValorCheio.Text := 'R$' + FloatToStr(valorCheio);
-  edtValorFinal.Text := 'R$ ' + FloatToStr(valorCheio);
+  zqryDesconto.SQL.Text := 'SELECT * FROM VENDAS WHERE ID = :ID;';
+  zqryDesconto.ParamByName('ID').AsInteger := frmVenda.vendaAtual;
+  zqryDesconto.Open;
+
+  valorCheio := zqryDesconto.FieldByName('VALOR').AsFloat;
+  //valorFinal := zqryDesconto.FieldByName('VLFINAL').AsFloat;
   KeyPreview := True;
 end;
 
@@ -101,11 +108,11 @@ begin
   begin
     Key := #0;
 
-    if edtDescontoVl.Text = '' then
+    if dbEdtDescVL.Text = '' then
       Exit;
 
     try
-      valorDesconto := StrToFloat(StringReplace(edtDescontoVl.Text, ',', ',', [rfReplaceAll]));
+      valorDesconto := StrToFloat(StringReplace(dbEdtDescVL.Text, ',', ',', [rfReplaceAll]));
     except
       on E: EConvertError do
       begin
@@ -116,10 +123,12 @@ begin
 
     descontoPr := (valorDesconto * 100) / valorCheio;
     descontoPr := RoundTo(descontoPr, -2);
-    edtDescontoPr.Text := FloatToStr(descontoPr);
-    edtDescontoVl.Text := FormatFloat('0.00', valorDesconto);
+    dbEdtDescPR.Text := FloatToStr(descontoPr);
+    dbEdtDescVL.Text := FormatFloat('0.00', valorDesconto);
     valorFinal := valorCheio - valorDesconto;
-    edtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
+    
+    dbEdtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
+
 
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
@@ -127,6 +136,7 @@ end;
 
 procedure TfrmDesconto.SpeedButton1Click(Sender: TObject);
 begin
+
 Application.CreateForm(TfrmPagamento, frmPagamento);
   try
 		frmPagamento.ShowModal;
@@ -139,11 +149,11 @@ end;
 
 procedure TfrmDesconto.edtDescontoPrExit(Sender: TObject);
 begin
-    if edtDescontoPr.Text = '' then
+    if dbEdtDescPR.Text = '' then
       Exit;
 
     try
-      descontoPr := StrToFloat(StringReplace(edtDescontoPr.Text, ',', '.', [rfReplaceAll]));
+      descontoPr := StrToFloat(StringReplace(dbEdtDescPR.Text, ',', ',', [rfReplaceAll]));
     except
       on E: EConvertError do
       begin
@@ -153,9 +163,9 @@ begin
     end;
 
     valorDesconto := (descontoPr * valorCheio) / 100;
-    edtDescontoVl.Text := FormatFloat('0.00', valorDesconto);
+    dbEdtDescVL.Text := FormatFloat('0.00', valorDesconto);
     valorFinal := valorCheio - valorDesconto;
-    edtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
+    dbEdtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
 
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
@@ -163,11 +173,11 @@ begin
 
 procedure TfrmDesconto.edtDescontoVlExit(Sender: TObject);
 begin
-	if edtDescontoPr.Text = '' then
+	if dbEdtDescPR.Text = '' then
       Exit;
 
     try
-      descontoPr := StrToFloat(StringReplace(edtDescontoPr.Text, ',', '.', [rfReplaceAll]));
+      descontoPr := StrToFloat(StringReplace(dbEdtDescPR.Text, ',', ',', [rfReplaceAll]));
     except
       on E: EConvertError do
       begin
@@ -177,11 +187,25 @@ begin
     end;
 
     valorDesconto := (descontoPr * valorCheio) / 100;
-    edtDescontoVl.Text := FormatFloat('0.00', valorDesconto);
+    dbEdtDescVL.Text := FormatFloat('0.00', valorDesconto);
     valorFinal := valorCheio - valorDesconto;
-    edtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
+    dbEdtValorFinal.Text := 'R$ ' + FormatFloat('0.00', valorFinal);
 
     Perform(WM_NEXTDLGCTL, 0, 0);
+end;
+
+procedure TfrmDesconto.verificaDesconto;
+var descontoPrConvertido, descontoVlConvertido: Double;
+var querySqlText: string;
+begin
+  if (dbEdtDescPR.Text = '') and (dbEdtDescVL.Text = '') then
+  begin
+    Exit;
+  end;
+  descontoPrConvertido := StrToFloat(dbEdtDescPR.Text);
+ 	descontoVlConvertido := StrToFloat(dbEdtDescVL.Text);
+	querySqlText := 'UPDATE VENDAS SET DESCPR = :DESCPR, DESCVL = :DESCVL WHERE VENDA_ID = :VENDAID';
+  
 end;
 
 end.

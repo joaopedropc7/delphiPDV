@@ -34,9 +34,10 @@ type
     { Private declarations }
   public
     { Public declarations }
+    valorPagoDb, valorRestante: Double;
     procedure AdjustGridColumnWidth;
     procedure verificaValorTotalPGDB;
-    valorPagoDb, valorRestante, valorTotalVenda: Double;
+
   end;
 
 var
@@ -70,7 +71,7 @@ end;
 procedure TfrmPagamento.verificaValorTotalPGDB;
 var valorASomar: Double;
 begin
-  valorPagoDb := 0;
+  valorPagoDb := 0.0;
   qryFormasPG.SQL.Text := 'SELECT * FROM FORMAS_PAGAMENTO WHERE VENDA_ID = :ID';
   qryFormasPG.ParamByName('ID').AsInteger := frmVenda.vendaAtual;
   qryFormasPG.Open;
@@ -81,7 +82,8 @@ begin
     valorPagoDb := valorPagoDb + valorASomar;
     qryFormasPG.Next;
   end;
-  edtValorFinal.Text := FloatToStr(frmVendaPDV.valorTotalVenda)
+  edtValorFinal.Text := FloatToStr(frmVendaPDV.valorTotalVenda);
+	valorRestante := 0.0;  
 
 end;
 
