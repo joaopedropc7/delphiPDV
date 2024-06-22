@@ -60,6 +60,7 @@ object frmPrincipal: TfrmPrincipal
     Height = 403
     Align = alClient
     BevelOuter = bvNone
+    Color = clActiveCaption
     TabOrder = 4
     object pnlBotoes: TPanel
       Left = 0
@@ -68,6 +69,7 @@ object frmPrincipal: TfrmPrincipal
       Height = 57
       Align = alTop
       BevelOuter = bvLowered
+      Color = clActiveCaption
       TabOrder = 0
       object SpeedButton1: TSpeedButton
         Left = 16

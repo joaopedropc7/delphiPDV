@@ -10,6 +10,7 @@ object frmDesconto: TfrmDesconto
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -137,7 +138,7 @@ object frmDesconto: TfrmDesconto
       object edtDescontoPr: TEdit
         Left = 64
         Top = 56
-        Width = 89
+        Width = 105
         Height = 33
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -146,12 +147,13 @@ object frmDesconto: TfrmDesconto
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        OnExit = edtDescontoPrExit
         OnKeyPress = edtDescontoPrKeyPress
       end
       object edtDescontoVl: TEdit
         Left = 208
         Top = 56
-        Width = 89
+        Width = 105
         Height = 33
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -160,6 +162,8 @@ object frmDesconto: TfrmDesconto
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
+        OnExit = edtDescontoVlExit
+        OnKeyPress = edtDescontoVlKeyPress
       end
       object pnlBotaoConfirmar: TPanel
         Left = 96
@@ -184,12 +188,13 @@ object frmDesconto: TfrmDesconto
           Font.Name = 'MS Sans Serif'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = SpeedButton1Click
         end
       end
       object edtValorFinal: TEdit
         Left = 208
         Top = 152
-        Width = 89
+        Width = 105
         Height = 33
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
@@ -203,7 +208,7 @@ object frmDesconto: TfrmDesconto
       object edtValorCheio: TEdit
         Left = 64
         Top = 152
-        Width = 89
+        Width = 105
         Height = 33
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clRed

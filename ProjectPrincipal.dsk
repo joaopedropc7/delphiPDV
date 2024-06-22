@@ -12,16 +12,21 @@ File_9=SourceModule,'C:\Workdir\sislib\src\vcl\SisFindBox.pas',0,1,203,1,212,0,0
 
 [Modules]
 Module0=D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas
-Module1=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
-Module2=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
-Module3=D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas
+Module1=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
+Module2=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
+Module3=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
 Module4=D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas
 Module5=D:\JoaoPedro\jp\Projetos\Teste\UnitProdutos.pas
-Module6=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
+Module6=D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas
 Count=7
 EditWindowCount=1
 
 [D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -36,11 +41,6 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
 [D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas]
 ModuleType=SourceModule
 FormState=1
@@ -51,7 +51,7 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas]
+[D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -89,9 +89,9 @@ ClientWidth=1087
 ClientHeight=563
 LeftPanelSize=0
 RightPanelSize=0
-BottomPanelSize=0
+BottomPanelSize=85
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965773F040000000000000255000000000000000100000000000000000000000001000000003F0400000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400000000003F040000000000000255000000000000000100000000000000000000000001000000003F0400000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitProdutos.pas
@@ -102,44 +102,44 @@ LeftCol=1
 
 [View1]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas
-CursorX=23
-CursorY=109
+CursorX=7
+CursorY=117
 TopLine=102
 LeftCol=1
 
 [View2]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
-CursorX=6
-CursorY=37
-TopLine=58
+CursorX=8
+CursorY=88
+TopLine=79
 LeftCol=1
 
 [View3]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas
-CursorX=41
-CursorY=11
-TopLine=1
+CursorX=30
+CursorY=165
+TopLine=158
 LeftCol=1
 
 [View4]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
-CursorX=8
-CursorY=284
-TopLine=269
+CursorX=7
+CursorY=251
+TopLine=272
 LeftCol=1
 
 [View5]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
-CursorX=51
-CursorY=20
-TopLine=1
+CursorX=3
+CursorY=85
+TopLine=69
 LeftCol=1
 
 [View6]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas
-CursorX=15
-CursorY=83
-TopLine=92
+CursorX=38
+CursorY=82
+TopLine=70
 LeftCol=1
 
 [Watches]
@@ -210,8 +210,8 @@ LRDockWidth=256
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=BevelInner
-ExpandedItems=
+SelectedItem=OnChange
+ExpandedItems=Title
 HiddenCategories=
 
 [ObjectTree]
@@ -280,7 +280,7 @@ Dockable=1
 
 [MessageView@EditWindow0]
 Create=1
-Visible=0
+Visible=1
 State=0
 Left=12
 Top=0

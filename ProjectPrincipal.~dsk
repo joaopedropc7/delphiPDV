@@ -11,16 +11,22 @@ File_8=SourceModule,'D:\JoaoPedro\jp\Projetos\Teste\UnitCadastroProduto.pas',0,1
 File_9=SourceModule,'C:\Workdir\sislib\src\vcl\SisFindBox.pas',0,1,203,1,212,0,0
 
 [Modules]
-Module0=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
-Module1=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
-Module2=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
+Module0=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
+Module1=D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas
+Module2=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
 Module3=D:\JoaoPedro\jp\Projetos\Teste\UnitProdutos.pas
-Module4=D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas
+Module4=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
 Module5=D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas
-Count=6
+Module6=D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas
+Count=7
 EditWindowCount=1
 
-[D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas]
+[D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=1
+
+[D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -30,22 +36,22 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
 [D:\JoaoPedro\jp\Projetos\Teste\UnitProdutos.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas]
+[D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
 [D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -59,14 +65,15 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=6
-CurrentView=3
+ViewCount=7
+CurrentView=5
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
 View5=5
+View6=6
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -96,36 +103,43 @@ LeftCol=1
 [View1]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitPrincipal.pas
 CursorX=7
-CursorY=99
-TopLine=98
+CursorY=117
+TopLine=102
 LeftCol=1
 
 [View2]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitVendas.pas
-CursorX=59
-CursorY=103
-TopLine=19
+CursorX=8
+CursorY=88
+TopLine=79
 LeftCol=1
 
 [View3]
-Module=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
-CursorX=36
-CursorY=276
-TopLine=266
+Module=D:\JoaoPedro\jp\Projetos\Teste\UnitTelaDesconto.pas
+CursorX=34
+CursorY=184
+TopLine=161
 LeftCol=1
 
 [View4]
-Module=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
-CursorX=51
-CursorY=20
-TopLine=1
+Module=D:\JoaoPedro\jp\Projetos\Teste\UnitVendaPDV.pas
+CursorX=7
+CursorY=251
+TopLine=233
 LeftCol=1
 
 [View5]
+Module=D:\JoaoPedro\jp\Projetos\Teste\UnitPagamentos.pas
+CursorX=1
+CursorY=30
+TopLine=17
+LeftCol=1
+
+[View6]
 Module=D:\JoaoPedro\jp\Projetos\Teste\UnitAjusteEstoque.pas
-CursorX=15
-CursorY=83
-TopLine=92
+CursorX=38
+CursorY=82
+TopLine=70
 LeftCol=1
 
 [Watches]
@@ -196,7 +210,7 @@ LRDockWidth=256
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=Caption
+SelectedItem=Active
 ExpandedItems=
 HiddenCategories=
 
